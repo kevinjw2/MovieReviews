@@ -6,9 +6,9 @@ public class Movie {
 
     private int movieId;
     private String title;
-    private String Director;
+    private String director;
     private int duration;
-    private Date date;
+    private Date releaseDate;
     private String leadActor;
     private String leadActress;
     private String genre;
@@ -30,11 +30,11 @@ public class Movie {
     }
 
     public String getDirector() {
-        return Director;
+        return director;
     }
 
     public void setDirector(String director) {
-        Director = director;
+        this.director = director;
     }
 
     public int getDuration() {
@@ -45,12 +45,12 @@ public class Movie {
         this.duration = duration;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getLeadActor() {
