@@ -17,14 +17,9 @@ CREATE TABLE Movie (
 
 CREATE TABLE Rating (
 	PersonalRating INT,
+    PersonalComments VARCHAR(500) NULL,
     MovieId INT,
     FOREIGN KEY fk_Movie_Rating (MovieId)
 		REFERENCES Movie(Id)
 );
 
-CREATE TABLE Comments (
-	PersonalComments VARCHAR(500) NULL,
-    MovieId int,
-    FOREIGN KEY fk_Movie_Comments (MovieId)
-		REFERENCES Movie(Id)
-);
