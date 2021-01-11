@@ -5,7 +5,7 @@ CREATE DATABASE personalMovieRecs;
 USE personalMovieRecs;
 
 CREATE TABLE Movie (
-	Id INT PRIMARY KEY AUTO_INCREMENT,
+    Id INT PRIMARY KEY AUTO_INCREMENT,
     Title VARCHAR(50) NOT NULL,
     Director VARCHAR(30) NOT NULL,
     Duration INT,
@@ -16,14 +16,14 @@ CREATE TABLE Movie (
 );
 
 CREATE TABLE Rating (
-	PersonalRating INT,
+    PersonalRating INT,
     MovieId INT,
     FOREIGN KEY fk_Movie_Rating (MovieId)
 		REFERENCES Movie(Id)
 );
 
 CREATE TABLE Comments (
-	PersonalComments VARCHAR(500) NULL,
+    PersonalComments VARCHAR(500) NULL,
     MovieId int,
     FOREIGN KEY fk_Movie_Comments (MovieId)
 		REFERENCES Movie(Id)
