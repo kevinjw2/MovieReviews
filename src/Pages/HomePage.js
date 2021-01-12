@@ -1,12 +1,12 @@
 import logo from "../logo.svg"
 import React from "react"
-import Myheader from "./MyHeader"
+import MyHeader from "../Components/MyHeader"
  
 function HomePage() {
     return (
         <div id ="home_page">
             <header className ="App-header">
-            <Myheader />
+            <MyHeader />
             </header>
         </div>
     )
