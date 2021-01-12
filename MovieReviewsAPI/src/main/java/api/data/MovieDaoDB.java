@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.*;
 import java.util.List;
@@ -39,7 +40,8 @@ public class MovieDaoDB implements MovieDao {
 
     @Override
     public Movie addMovie(Movie movie) {
-        final String sql = "INSERT INTO Movie(, inProgress) VALUES(?,?);";
+        final String sql = "INSERT INTO Movie(title, director, duration, releaseDate, leadActor, leadActress, genre) " +
+                "VALUES(?,?,?,?,?,?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update((Connection conn) -> {
             PreparedStatement statement = conn.prepareStatement(
@@ -56,6 +58,46 @@ public class MovieDaoDB implements MovieDao {
         }, keyHolder);
         movie.setMovieId(keyHolder.getKey().intValue());
         return movie;
+    }
+
+    @Override
+    @Transactional
+    public void deleteMovieById(int movieId) {
+        final String DELETE_MOVIEID_IN_RATING = "DELETE FROM rating "
+                + "WHERE MovieId = ?";
+        jdbcTemplate.update(DELETE_MOVIEID_IN_RATING, movieId);
+        final String DELETE_MOVIE = "DELETE FROM movie WHERE MovieId = ?";
+        jdbcTemplate.update(DELETE_MOVIE, movieId);
+    }
+
+    @Override
+    public List<Rating> getRatingsForMovie(Movie movie) {
+        final String sql = "SELECT * FROM rating WHERE MovieId = ?;";
+        return jdbcTemplate.query(sql, new RatingMapper(), movie.getMovieId());
+    }
+
+    @Override
+    public Rating addRating(Rating rating) {
+        final String sql = "INSERT INTO rating(RatingId, PersonalRating, PersonalComments, MovieId) " +
+                "VALUES(?,?,?,?);";
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update((Connection conn) -> {
+            PreparedStatement statement = conn.prepareStatement(
+                    sql,
+                    Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, rating.getPersonalRating());
+            statement.setString(2, rating.getPersonalComments());
+            statement.setInt(3, rating.getMovieId());
+            return statement;
+        }, keyHolder);
+        rating.setRatingId(keyHolder.getKey().intValue());
+        return rating;
+    }
+
+    @Override
+    public void deleteRatingById(int ratingId) {
+        final String sql = "DELETE FROM rating WHERE Id = ?;";
+        jdbcTemplate.update(sql, ratingId);
     }
 
     public static final class MovieMapper implements RowMapper<Movie> {
@@ -80,6 +122,7 @@ public class MovieDaoDB implements MovieDao {
         @Override
         public Rating mapRow(ResultSet rs, int index) throws SQLException {
             Rating rating = new Rating();
+            rating.setRatingId(rs.getInt("Id"));
             rating.setPersonalRating(rs.getInt("PersonalRating"));
             rating.setPersonalComments(rs.getString("PersonalComments"));
             rating.setMovieId(rs.getInt("MovieId"));

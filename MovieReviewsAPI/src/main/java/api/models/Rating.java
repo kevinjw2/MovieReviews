@@ -2,9 +2,18 @@ package api.models;
 
 public class Rating {
 
+    private int ratingId;
     private int personalRating;
     private String personalComments;
     private int movieId;
+
+    public int getRatingId() {
+        return ratingId;
+    }
+
+    public void setRatingId(int ratingId) {
+        this.ratingId = ratingId;
+    }
 
     public int getPersonalRating() {
         return personalRating;
