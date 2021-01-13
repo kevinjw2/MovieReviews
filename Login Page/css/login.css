@@ -1,0 +1,14 @@
+div {
+  width: 600px;
+
+}
+
+body {
+  background-color: black;
+  background-size: cover;
+  color: white;
+}
+
+h1 {
+  font-size: 50px;
+}
