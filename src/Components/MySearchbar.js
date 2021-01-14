@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import Filterbar from './Filterbar'
 
 const MySearchbar = ({ searchQuery, setSearchQuery }) => {
     const history = useHistory();
@@ -21,6 +22,8 @@ const MySearchbar = ({ searchQuery, setSearchQuery }) => {
             name="s"
         />
         <button type ="submit">Search</button>
+        <Filterbar />
+        <button type ="button">Filter:Length </button>
         <button type ="button">Personal list </button>
     </form>
 }
