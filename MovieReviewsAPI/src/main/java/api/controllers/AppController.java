@@ -43,4 +43,9 @@ public class AppController {
     public Movie create(Movie movie) {
         return movieDao.addMovie(movie);
     }
+
+    @DeleteMapping("/delete/{movieId}")
+    public void delete(@PathVariable int movieId) {
+        movieDao.deleteMovieById(movieId);
+    }
 }
