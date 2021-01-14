@@ -8,7 +8,7 @@ public class Movie {
     private String title;
     private String director;
     private int duration;
-    private Date releaseDate;
+    private int releaseYear;
     private String leadActor;
     private String leadActress;
     private String genre;
@@ -45,12 +45,12 @@ public class Movie {
         this.duration = duration;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public String getLeadActor() {
