@@ -50,7 +50,7 @@ public class MovieDaoDB implements MovieDao {
             statement.setString(1, movie.getTitle());
             statement.setString(2, movie.getDirector());
             statement.setInt(3, movie.getDuration());
-            statement.setDate(4, movie.getReleaseDate());
+            statement.setInt(4, movie.getReleaseYear());
             statement.setString(5, movie.getLeadActor());
             statement.setString(6, movie.getLeadActress());
             statement.setString(7, movie.getGenre());
@@ -109,7 +109,7 @@ public class MovieDaoDB implements MovieDao {
             movie.setTitle(rs.getString("Title"));
             movie.setDirector(rs.getString("Director"));
             movie.setDuration(rs.getInt("Duration"));
-            movie.setReleaseDate(rs.getDate("ReleaseDate"));
+            movie.setReleaseYear(rs.getInt("ReleaseYear"));
             movie.setLeadActor(rs.getString("LeadActor"));
             movie.setLeadActress(rs.getString("LeadActress"));
             movie.setGenre(rs.getString("Genre"));
