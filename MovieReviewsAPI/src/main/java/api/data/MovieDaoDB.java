@@ -96,7 +96,7 @@ public class MovieDaoDB implements MovieDao {
 
     @Override
     public void deleteRatingById(int ratingId) {
-        final String sql = "DELETE FROM rating WHERE Id = ?;";
+        final String sql = "DELETE FROM rating WHERE RatingId = ?;";
         jdbcTemplate.update(sql, ratingId);
     }
 
@@ -105,7 +105,7 @@ public class MovieDaoDB implements MovieDao {
         @Override
         public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
             Movie movie = new Movie();
-            movie.setMovieId(rs.getInt("Id"));
+            movie.setMovieId(rs.getInt("MovieId"));
             movie.setTitle(rs.getString("Title"));
             movie.setDirector(rs.getString("Director"));
             movie.setDuration(rs.getInt("Duration"));
@@ -122,7 +122,7 @@ public class MovieDaoDB implements MovieDao {
         @Override
         public Rating mapRow(ResultSet rs, int index) throws SQLException {
             Rating rating = new Rating();
-            rating.setRatingId(rs.getInt("Id"));
+            rating.setRatingId(rs.getInt("RatingId"));
             rating.setPersonalRating(rs.getInt("PersonalRating"));
             rating.setPersonalComments(rs.getString("PersonalComments"));
             rating.setMovieId(rs.getInt("MovieId"));
