@@ -6,13 +6,13 @@ USE personalMovieRecsTest;
 
 CREATE TABLE Movie (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    Title VARCHAR(50) NOT NULL,
-    Director VARCHAR(30) NOT NULL,
+    Title VARCHAR(100) NOT NULL,
+    Director VARCHAR(30),
     Duration INT,
     ReleaseYear CHAR(4) NOT NULL,
     LeadActor VARCHAR(30) NULL,
     LeadActress VARCHAR(30) NULL,
-    Genre VARCHAR(10) NOT NULL
+    Genre VARCHAR(20)
 );
 
 CREATE TABLE Rating (
